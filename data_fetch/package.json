@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@mateoaranda/jikanjs": "^1.2.4",
+    "oracledb": "^6.3.0"
+  }
+}
