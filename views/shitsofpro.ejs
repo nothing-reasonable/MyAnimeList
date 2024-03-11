@@ -1,0 +1,70 @@
+<div class="anime_details_box">
+    <form action="/update_anime_details" method="post">
+        <div class="anime_details_text">
+            <label for="alternate_name" style="color: rgb(149, 148, 148);">Alternate Name:</label>
+            <input type="text" id="alternate_name" name="alternate_name" value="<%= data[0][2] %>" style="width: 200px; background-color: rgba(25, 123, 235, 0.548);" <%if(!edit_access) {%> readonly <%}%>><br>
+            <label for="restricted_to_adults" style="color: rgb(149, 148, 148);">Restricted to Adults:</label>
+            <input type="text" id="restricted_to_adults" name="restricted_to_adults" value="<%= data[0][3] %>" style="width: 200px; background-color: rgba(25, 123, 235, 0.548);" <%if(!edit_access) {%> readonly <%}%>><br>
+            <label for="num_episodes" style="color: rgb(149, 148, 148);">No. of episodes:</label>
+            <input type="text" id="num_episodes" name="num_episodes" value="<%= data[0][4] %>" style="width: 200px; background-color: rgba(25, 123, 235, 0.548);" <%if(!edit_access) {%> readonly <%}%>><br>
+            <label for="trailer_link" style="color: rgb(149, 148, 148);">Trailer Link:</label>
+            <input type="text" id="trailer_link" name="trailer_link" value="<%= data[0][5] %>" style="width: 200px; background-color: rgba(25, 123, 235, 0.548);" <%if(!edit_access) {%> readonly <%}%>><br>
+            <label for="status" style="color: rgb(149, 148, 148);">Status:</label>
+            <input type="text" id="status" name="status" value="<%= data[0][6] %>" style="width: 200px; background-color: rgba(25, 123, 235, 0.548);" <%if(!edit_access) {%> readonly <%}%>><br>
+            <label for="aired_from" style="color: rgb(149, 148, 148);">Aired from:</label>
+            <input type="text" id="aired_from" name="aired_from" value="<%= data[0][7] %>" style="width: 200px; background-color: rgba(25, 123, 235, 0.548);" <%if(!edit_access) {%> readonly <%}%>><br>
+            <label for="aired_to" style="color: rgb(149, 148, 148);">Aired to:</label>
+            <input type="text" id="aired_to" name="aired_to" value="<%= data[0][8] %>" style="width: 200px; background-color: rgba(25, 123, 235, 0.548);" <%if(!edit_access) {%> readonly <%}%>><br>
+            <label for="country_of_origin" style="color: rgb(149, 148, 148);">Country of Origin:</label>
+            <input type="text" id="country_of_origin" name="country_of_origin" value="<%= data[0][10] %>" style="width: 200px; background-color: rgba(25, 123, 235, 0.548);" <%if(!edit_access) {%> readonly <%}%>><br>
+            <label for="avg_episode_duration" style="color: rgb(149, 148, 148);">Average episode duration:</label>
+            <input type="text" id="avg_episode_duration" name="avg_episode_duration" value="<%= data[0][11] %>" style="width: 200px; background-color: rgba(25, 123, 235, 0.548);" <%if(!edit_access) {%> readonly <%}%>><br>
+        </div>
+        <button type="submit">Save</button>
+    </form>
+</div>
+
+
+<div class="anime_title" style="display: flex;" >
+    <div contenteditable="<%=edit_access%>">
+        <%= data[0][1]%>
+        <% if(data[0][1] == null)  {%> <%= data[0][2] %> <%}%>
+    </div>
+    <form action="/anime/<%= data[0][0] %>/edit" method="post" style="margin-left: auto;">
+        <input type="hidden" name="anime_id" value="<%= data[0][0] %>">
+        <% if (edit_access == true) {%><button type="submit">Save</button> <% }%>
+    </form>
+</div>
+
+
+<div class="watchlist_button">
+    <form id="watchlist_form" action="/anime/<%= data[0][0] %>" method="post">
+        <input type="hidden" name="anime_id" value="<%= data[0][0] %>">
+        <select id="watchlist_status" name="watchlist_status" onchange="addToWatchlist()"> 
+            <option value="0" <% if(user_anime_status == 0) {%> selected <% } %>>Add to list</option>
+            <option value="1" <% if(user_anime_status == 1) {%> selected <% } %> >Watchlist</option>
+            <option value="2" <% if(user_anime_status == 2) {%> selected <% } %>>Watching</option>
+            <option value="3" <% if(user_anime_status == 3) {%> selected <% } %>>Finished</option>
+        </select>
+    </form>
+</div>
+
+<div class="anime_desc" contenteditable="<%=edit_access%>">
+    
+    <%- data[0][9] %> <br>
+    
+</div>
+
+    <div class="anime_details_box" contenteditable="<%=edit_access%>">
+            <div class="anime_details_text">
+                <font style="color: rgb(149, 148, 148);">Alternate Name:</font>   <%= data[0][2] %> <br>
+                <font style="color: rgb(149, 148, 148);">Restricted to Adults:</font> <%= data[0][3] %> <br>
+                <font style="color: rgb(149, 148, 148);">No. of episodes:</font> <%= data[0][4] %> <br>
+                <font style="color: rgb(149, 148, 148);">Trailer Link:</font> <%= data[0][5] %> <br>
+                <font style="color: rgb(149, 148, 148);">Status:</font> <%= data[0][6] %> <br>
+                <font style="color: rgb(149, 148, 148);">Aired from:</font> <%= data[0][7] %> to <%= data[0][8] %> <br>
+                <font style="color: rgb(149, 148, 148);">Country of Origin:</font> <%= data[0][10] %> <br>
+                <font style="color: rgb(149, 148, 148);">Average episode duration:</font> <%= data[0][11] %> minutes <br>
+            </div>
+        </form>
+    </div>

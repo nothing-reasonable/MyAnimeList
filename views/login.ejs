@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="bg.css">
+  <style>
+    .logo {
+    width:38%;
+    height: auto;
+  }
+    body {
+      font-family: Arial, sans-serif;
+      padding: 0;
+      background-color: #000;
+    }
+
+    h1 {
+      color: #fff;
+    }
+
+    form {
+      background-color: rgba(78, 161, 255, 0.879);
+      color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 50%;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: white;
+    }
+
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 16px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body style="color: white">
+  <div class="wrapper">
+      
+    <div><span class="dot"></span></div>
+    <div><span class="dot"></span></div>
+    <div><span class="dot"></span></div>
+    <div><span class="dot"></span></div>
+    <div><span class="dot"></span></div>
+    <div><span class="dot"></span></div>
+    <div><span class="dot"></span></div>
+    <div><span class="dot"></span></div>
+    <div><span class="dot"></span></div>
+    <div><span class="dot"></span></div>
+    <div><span class="dot"></span></div>
+    <div><span class="dot"></span></div>
+    <div><span class="dot"></span></div>
+    <div><span class="dot"></span></div>
+    <div><span class="dot"></span></div>
+    
+</div>
+  <br><br><br>
+  <center><a href = "/"><img class="logo" src="logo.png"></a></center>
+  <br>
+  <center><h1 style="color: white;">Login</h1></center><br><br>
+  <center>
+  <form method="post" action = "/login" >
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" placeholder="Enter your username" required>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+    <button type="submit">Login</button>
+
+    <center> <label for = "registration"> Don't have an account? <a href = "register"> Register</a> </label> </center>
+  </form>
+  </center>
+
+</body>
+</html>

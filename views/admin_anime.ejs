@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>myAnimeList</title>
+    <link rel="stylesheet" href="bg.css">
+    <link rel="stylesheet" href="box.css">
+
+</head>
+<body style="color: white">
+    <div class="wrapper">
+      
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      
+  </div>
+  
+  <div class="user_stuffs">
+    <br>
+    <a href="/login">LOGIN</a>  
+    <a href="/register">REGISTER</a>
+  </div>
+
+
+  <div class="centered">
+    <br><br><img class="logo" src="logo.png"><br><br><br>
+    <br><br><br><br>
+
+      <%data.forEach((row) =>{%>
+        <div class="container">
+          <h1>Anime_Edit_Panel</h1>
+          <form action="/admin" method="post">
+            <div class="inline-div">
+            <p align="center">anime_id</p>
+            <textarea id="anime_id" name="anime_id" class = "resizable-textarea" cols="10" rows="1" class="inline-txtarea" ><%=row[0]%></textarea>
+            </div>
+        
+            <div class="inline-div">
+            <p align="center">title_english</p>
+            <textarea id="title_english" name="title_english" class = "resizable-textarea" cols="10" rows="1" class="inline-txtarea" ><%=row[1]%></textarea>
+            </div>
+        
+            <div class="inline-div">
+            <p align="center">title_native</p>
+            <textarea id="title_native" name="title_native" class = "resizable-textarea" cols="10" rows="1" class="inline-txtarea" ><%=row[2]%></textarea>
+            </div>
+        
+            <div class="inline-div">
+            <p align="center">Is_Adult</p>
+            <textarea id="is_adult" name="is_adult" class = "resizable-textarea" cols="10" rows="1" class="inline-txtarea" ><%=row[3]%></textarea>
+            </div>
+        
+            <div class="inline-div">
+            <p align="center">Episode_Count</p>
+            <textarea id="episode_count" name="episode_count" class = "resizable-textarea" cols="10" rows="1" class="inline-txtarea" ><%=row[4]%></textarea>
+
+            <div class="inline-div">
+            <p align="center">Trailer_Link</p>
+            <textarea id="trailer_link" name="trailer_link" class = "resizable-textarea" cols="10" rows="1" class="inline-txtarea" ><%=row[5]%></textarea>
+            </div>
+        
+            <div class="inline-div">
+            <p align="center">Status</p>
+            <textarea id="status" name="status" class = "resizable-textarea" cols="10" rows="1" class="inline-txtarea"><%=row[6]%></textarea>
+            </div>
+        
+            <div class="inline-div">
+            <p align="center">Start_Date</p>
+            <textarea id="start_date" name="start_date" class = "resizable-textarea" cols="10" rows="1" class="inline-txtarea" ><%=row[7]%></textarea>
+            </div>
+        
+            <div class="inline-div">
+            <p align="center">End_Date</p>
+            <textarea id="end_date" name="end_date" class = "resizable-textarea" cols="10" rows="1" class="inline-txtarea" ><%=row[8]%></textarea>
+            </div>
+        
+            <div class="inline-div">
+            <p align="center">Synopsis</p>
+            <textarea id="synopsis" name="synopsis" class = "resizable-textarea" cols="10" rows="1" class="inline-txtarea" ><%=row[9]%></textarea>
+            </div>
+        
+            <div class="inline-div">
+            <p align="center">Country_Of_Origin</p>
+            <textarea id="country_of_origin" name="country_of_origin" class = "resizable-textarea" cols="10" rows="1" class="inline-txtarea" ><%=row[10]%></textarea>
+            </div>
+        
+            <div class="inline-div">
+            <p align="center">Average_Episode_Length</p>
+            <textarea id="average_episode_length" name="average_episode_length" class = "resizable-textarea" cols="10" rows="1" class="inline-txtarea" ><%=row[11]%>
+            </textarea>
+            </div>
+        
+            <div class="inline-div">
+            <p align="center">Banner_Image</p>
+            <textarea id="banner_image" name="banner_image" class = "resizable-textarea" cols="10" rows="1" class="inline-txtarea" ><%=row[12]%></textarea>
+            </div>
+        
+            <div class="inline-div">
+            <p align="center">Cover_Image</p>
+            <textarea id="cover_image" name="cover_image" class = "resizable-textarea" cols="10" rows="1" class="inline-txtarea" ><%=row[13]%></textarea>
+            </div>
+            
+            <button type="submit" id="saveButton" onclick="saveData()">Save</button>
+          </form>
+  
+        </div>
+
+        <% }); %>
+
+    </div>
+      <script>function enableEdit() {
+        const anime_id = document.getElementById("anime_id");
+        const title_english = document.getElementById("title_english");
+        const title_native = document.getElementById("title_native");
+        const is_adult = document.getElementById("is_adult");
+        const episode_count = document.getElementById("episode_count");
+        const trailer_link = document.getElementById("trailer_link");
+        const status = document.getElementById("status");
+        const start_date = document.getElementById("start_date");
+        const end_date = document.getElementById("end_date");
+        const synopsis = document.getElementById("synopsis");
+        const country_of_origin = document.getElementById("country_of_origin");
+        const average_episode_length = document.getElementById("average_episode_length");
+        const banner_image = document.getElementById("banner_image");
+        const cover_image = document.getElementById("cover_image");
+        const editButton = document.getElementById("editButton");
+        const saveButton = document.getElementById("saveButton"); 
+    
+        // anime_id. = false;
+        // title_english. = false;
+        // title_native. = false;
+        // is_adult. = false;
+        // episode_count. = false;
+        // trailer_link. = false;
+        // status. = false;
+        // start_date. = false;
+        // end_date. = false;
+        // synopsis. = false;
+        // country_of_origin. = false;
+        // average_episode_length. = false;
+        // banner_image. = false;
+        // cover_image. = false;
+    
+    
+        editButton.disabled = false;
+        //saveButton.disabled = false;
+    }
+    
+    // Function to save the edited data
+    function saveData() {
+        const anime_id = document.getElementById("anime_id");
+        const title_english = document.getElementById("title_english");
+        const title_native = document.getElementById("title_native");
+        const is_adult = document.getElementById("is_adult");
+        const episode_count = document.getElementById("episode_count");
+        const trailer_link = document.getElementById("trailer_link");
+        const status = document.getElementById("status");
+        const start_date = document.getElementById("start_date");
+        const end_date = document.getElementById("end_date");
+        const synopsis = document.getElementById("synopsis");
+        const country_of_origin = document.getElementById("country_of_origin");
+        const average_episode_length = document.getElementById("average_episode_length");
+        const banner_image = document.getElementById("banner_image");
+        const cover_image = document.getElementById("cover_image");
+        const editButton = document.getElementById("editButton");
+        const saveButton = document.getElementById("saveButton");
+    
+        // anime_id. = true;
+        // title_english. = true;
+        // title_native. = true;
+        // is_adult. = true;
+        // episode_count. = true;
+        // trailer_link. = true;
+        // status. = true;
+        // start_date. = true;
+        // end_date. = true;
+        // synopsis. = true;
+        // country_of_origin. = true;
+        // average_episode_length. = true;
+        // banner_image. = true;
+        // cover_image. = true;
+        editButton.disabled = true;
+        //saveButton.disabled = true;
+    }
+    </script>
+
+
+</body>
+</html>

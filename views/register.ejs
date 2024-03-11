@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="bg.css">
+    <style>
+          .logo {
+            width:38%;
+            height: auto;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            padding: 0;
+            background-color: #000;
+        }
+
+        h1 {
+            color: #fff;
+        }
+
+        form {
+            background-color: rgba(78, 161, 255, 0.879);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 50%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        input {
+            width: 35%;
+            padding: 10px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            padding: 10px;
+            width: 20%
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+        .custom_text {
+            color: red;
+        }
+    </style>
+</head>
+<body style="color: white">
+    <div class="wrapper">
+      
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        
+    </div>
+      <br><br><br>
+      <center><a href = "/"><img class="logo" src="logo.png"></a></center>
+      <br>
+    <center><h1>User Registration</h1><br><br>
+
+    <form onsubmit="return validateForm()" method="post" action="/register">
+        <label for="username">Username:<span class = custom_text>*</span>:</label>
+        <input type="text" id="username" name="username" placeholder="Enter your username" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email">
+
+        <label for="password">Password:<span class = custom_text>*</span>:</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+        <label for="profile_picture">Profile Picture:</label>
+        <input type="file" id="profile_picture" name="profile_picture" accept="image/*">
+        <center><button type="submit">Register</button><center>
+    </form>
+    </center>
+    <br><br>
+
+    <script>
+        function validateForm() {
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            if (username.trim() === '' || password.trim() === '') {
+                alert('Username and Password are mandatory fields. Please fill them out.');
+                return false; // Prevent form submission
+            }
+
+            return true; // Allow form submission
+        }
+    </script>
+
+</body>
+</html>

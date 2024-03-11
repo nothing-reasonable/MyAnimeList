@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>myAnimeList</title>
+    <link rel="stylesheet" href="http://localhost:3000/bg.css">
+    <link rel="stylesheet" href="http://localhost:3000/box.css">
+
+</head>
+<body style="color: white">
+    <div class="wrapper">
+      
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        
+    </div>
+    
+    
+    <div class="centered">
+        <br><br><a href= "/"><img class="logo" src="http://localhost:3000/logo.png"></a><br><br><br>
+        <form action="/manga/<%=manga_id%>/add/anime/search" method="get">
+          <input type="hidden" id="page" name="page_index" value="<%=page_index%>">
+          <input type="text" id="search" name="title" placeholder="Search Anime or Manga" value="<%=title%>">
+          <input type="text" id="search_genre" name="genre" placeholder="Search by Genre" value="<%=genre_s%>">
+          <select id="year" name="year">
+              <option value="">Release Year</option>
+              <% year.forEach(row => { %>
+                  <option value="<%= row[0] %>"><%= row[0] %></option>
+              <% }); %>
+          </select>
+          <select id="status" name="status">
+              <option value="<%=status_s%>">Status</option>
+              <option value="Finished">Finished</option>
+              <option value="Releasing">Releasing</option>
+          </select>
+          <select id="country" name="country">
+              <option value="<%=country_s%>">Country of Origin</option>
+              <% country_of_origin.forEach(row => { %>
+                  <option value="<%= row[0] %>"><%= row[0] %></option>
+              <% }); %>
+          </select>
+          <input type="checkbox" id="manga_adapted" name="manga_adapted"> Manga Adapted
+          <input type="text" id="characters" name="characters" placeholder="Character's Name" value="<%=characters_s%>">
+          <input type="text" id="studio" name="studio" placeholder="Studio" value="<%=studio_s%>">
+          <button type="submit" onclick="page_index.value=0">Search</button>
+          <button class="page" <% if(page_index == 1) { %> disabled <% } %> onclick="page_index.value = page_index.value-2">Previous</button>
+          <button class="page" <% if(data.length < 20) { %> disabled <% } %>>Next</button>
+      </form>
+        <br><br><br>
+      </div>
+      <br>
+
+        <br><br><br>
+      <div class="centered">
+          <%data.forEach(row =>{%>
+            <a href="/anime/<%=row[0]%>">
+            <div class="media-placeholder">
+    
+                <div class="vertical-box">
+                    <a href="/manga/<%=manga_id%>/add/anime/<%=row[0]%>"><img class="rounded-image" src="<%= row[3]%>" alt="No image available" <%if(row[4] == 'YES') {%> style="filter:blur(15px)" <%}%>></a>
+                </div>
+                
+                <div class="title">
+                  <%= row[1]%>
+                  <% if(row[1] == null)  {%> <%= row[2] %> <%}%>
+                </div>
+             </div>
+            </a>
+            <% }); %>
+    
+        </div>
+</body>
+</html>

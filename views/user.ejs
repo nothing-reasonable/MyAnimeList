@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>User Profile</title>
+    <link rel = "stylesheet" href = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <%- include('./bg'); %>
+    <%- include('./box'); %>
+    
+    <style>
+        .media-placeholder_anime_list {
+            width: 75px;
+            height: 75px;
+            display: inline-block;
+            margin-left: 15px;
+            margin-right: 15px;
+            margin-bottom: 15px;
+            color: azure;
+            position: relative;
+        }
+        .vertical-box_inside_user {
+            width: 75px; 
+            height: 75px; 
+            background-color: grey;
+            border-radius: 37.5px;
+            display: inline-block;
+            position: relative;
+            margin-left: 20%;
+            margin-bottom: 5px;
+
+            overflow: hidden; 
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        .profile-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .profile-info img {
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+        .dropdown {
+            margin-bottom: 30px;
+        }
+        .dropdown-content {
+            display: none;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .dropdown-content ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .dropdown-content ul li {
+            margin-bottom: 5px;
+        }
+        .dropdown-content ul li:last-child {
+            margin-bottom: 0;
+        }
+    </style>   
+    <style>
+        .user_profile{
+          position: absolute;
+          top: 0;
+          right: 0;
+          text-align: justify;
+          padding: 10px;
+        }
+      </style> 
+        <style>
+            .user_stuffs{
+            position: absolute;
+            top: 0;
+            left: 0;
+            text-align: justify;
+            padding: 10px;
+            }
+        </style>
+        <style>
+            .user_propic{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            }
+        </style>
+        <script>
+            function promote() 
+            {
+                var x = confirm("Are you sure you want to promote this user?");
+                if (x)
+                {
+                    window.location.href = "/promote/<%=data[0][0]%>";
+                }
+            }
+            function demote() 
+            {
+                var x = confirm("Are you sure you want to demote this user?");
+                if (x)
+                {
+                    window.location.href = "/demote/<%=data[0][0]%>";
+                }
+            }
+            function ban() 
+            {
+                var x = confirm("Are you sure you want to ban this user?");
+                if (x)
+                {
+                    window.location.href = "/ban/<%=data[0][0]%>";
+                }
+            }
+            function unban() 
+            {
+                var x = confirm("Are you sure you want to unban this user?");
+                if (x)
+                {
+                    window.location.href = "/unban/<%=data[0][0]%>";
+                }
+            }
+        </script>
+</head>
+<body style="color: white">
+    <div class="wrapper">
+      
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        
+    </div>
+   
+        <div class="user_stuffs">
+          <br>
+
+        </div>
+        <%if(locals.privilege === 'Admin'){%>
+            <button><a href="/fpt">FPT LOGS</a></button>
+            <button><a href="/admin/add/anime">Add Anime</a></button>
+            <button><a href="/admin/add/manga">Add Manga</a></button>
+            <button><a href="/admin/add/genre">Add Genre</a></button>
+            <button><a href="/admin/add/studio">Add Studio</a></button>
+            
+
+            <%}%>
+      
+        <div class = "user_profile">
+          
+          <% if(locals.login_status == true) {%>
+            <img class = "user_propic" src = <%=locals.pro_pic %> > <br>
+            Hello, <p style = "color : red"><a href="/user/<%= locals.user_id %>"><%= locals.username %></a> !</p>
+            <button><a href="/logout">LOGOUT</a></button>
+            
+          <% } %>
+          <% if(locals.login_status == false) {%>
+            <div class="tenor-gif-embed" data-postid="25682853" data-share-method="host" data-aspect-ratio="1.77778" data-width="100%"><a href="https://tenor.com/view/anya-gif-25682853">Anya GIF</a>from <a href="https://tenor.com/search/anya-gifs">Anya GIFs</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script><!-- <div class="tenor-gif-embed" data-postid="27052786" data-share-method="host" data-aspect-ratio="1.78771" data-width="100%"><a href="https://tenor.com/view/intense-anya-anya-forger-anime-anya-forger-anya-smile-gif-27052786">Intense Anya GIF</a>from <a href="https://tenor.com/search/intense-gifs">Intense GIFs</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script> -->
+            Hello, <p style = "color : red ">Anya!</p>
+          <% } %>
+          <% if(locals.login_status == true) {%>
+              <a href="/delete/<%=data[0][0]%>"><button style="color: red;">Delete Account</button></a><br><br>
+            <% } %>
+
+        <!-- Last Active Status -->
+        <p>Last Active: January 31, 2024</p>
+
+        <!-- Reputation -->
+        <p>Reputation: <%=r_points%></p> <!-- Reputation will be calculated based on user activity -->
+
+        <%if(locals.privilege === 'Admin' && data[0][0] !== user_id) {%>
+            <%if(data[0][3] === 'User') {%><button onclick="promote()">Promote to Moderator<%}%></button>
+        <%}%>
+        <%if(locals.privilege === 'Admin' && data[0][0] !== user_id) {%>
+            <%if(data[0][3] === 'Moderator') {%><button onclick="demote()">Demote to User<%}%></button>
+        <%}%>
+
+        
+        </div>
+    <header>
+        <a href= "/"><img height="140" src="https://files.catbox.moe/rfez6j.png" ></a>
+    </header>
+    <div class="container">
+        <div class="profile-info">
+            <img src= "<%= data[0][5] %>" alt="Profile Picture" width="100" height="100">
+            <div>
+                <h2><%= data[0][1] %></h2>
+                <p>Join Date: January 1, 2023</p>
+            </div>
+        </div>
+        
+        <div class="dropdown">
+            <a href="/user/<%= data[0][0]%>/anime/1"><h2>Anime in Watchlist</h2></a>
+            <div class="dropdown-content">
+                <div class="media-placeholder_anime_list">
+                     <% anime_list.forEach(row => {%>      <!-- this needs to be changed from server to send only anime in watchlist -->
+                        <% if(row[3] == 1) {%>
+                            <div class="vertical-box_inside_user">
+                                <a href = "/anime/<%=row[4]%>"><img class="rounded-image" src="<%= row[2]%>" alt="No image available"></a>
+                            </div>
+                        <%}%>
+                    <% }); %>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <a href="/user/<%= data[0][0]%>/anime/2"><h2>Anime Watching Now</h2></a>
+            <div class="dropdown-content">
+                <div class="media-placeholder_anime_list">
+                     <% anime_list.forEach(row => {%>      <!-- this needs to be changed from server to send only watching anime -->
+                        <% if(row[3] == 2) {%>
+                            <div class="vertical-box_inside_user">
+                                <a href = "/anime/<%=row[4]%>"><img class="rounded-image" src="<%= row[2]%>" alt="No image available"></a>
+                            </div>
+
+                        <% } %>
+                    <% }); %>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <a href="/user/<%= data[0][0]%>/anime/3"><h2>Completed Anime</h2></a>
+            <div class="dropdown-content">
+                <div class="media-placeholder_anime_list">
+                     <% anime_list.forEach(row => {%>      <!-- this needs to be changed from server to send only completed anime -->
+                        <% if(row[3] == 3) { %>
+                            <div class="vertical-box_inside_user">
+                                <a href = "/anime/<%=row[4]%>"><img class="rounded-image" src="<%= row[2]%>" alt="No image available"></a>
+                            </div>
+
+                        <%}%>
+                    <% }); %>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <a href="/user/<%= data[0][0]%>/manga/1"><h2>Want to read</h2></a>
+            <div class="dropdown-content">
+                <div class="media-placeholder_anime_list">
+                     <% manga_list.forEach(row => {%>      <!-- this needs to be changed from server to send only anime in watchlist -->
+                        <% if(row[3] == 1) {%>
+                            <div class="vertical-box_inside_user">
+                                <a href = "/manga/<%=row[4]%>"><img class="rounded-image" src="<%= row[2]%>" alt="No image available"></a>
+                            </div>
+
+                        <%}%>
+                    <% }); %>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <a href="/user/<%= data[0][0]%>/manga/2"><h2>Manga Reading</h2></a>
+            <div class="dropdown-content">
+                <div class="media-placeholder_anime_list">
+                     <% manga_list.forEach(row => {%>      <!-- this needs to be changed from server to send only watching anime -->
+                        <% if(row[3] == 2) {%>
+                            <div class="vertical-box_inside_user">
+                                <a href = "/manga/<%=row[4]%>"><img class="rounded-image" src="<%= row[2]%>" alt="No image available"></a>
+                            </div>
+                        <% } %>
+                    <% }); %>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <a href="/user/<%= data[0][0]%>/manga/3"><h2>Finished Reading</h2></a>
+            <div class="dropdown-content">
+                <div class="media-placeholder_anime_list">
+                     <% manga_list.forEach(row => {%>      <!-- this needs to be changed from server to send only completed anime -->
+                        <% if(row[3] == 3) { %>
+                            <div class="vertical-box_inside_user">
+                            <a href = "/manga/<%=row[4]%>"><img class="rounded-image" src="<%= row[2]%>" alt="No image available"></a>
+                            </div>
+
+                        <%}%>
+                    <% }); %>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <h2>Anime Reviews</h2>
+            <div class="dropdown-content">
+                <div class="review">
+                    <% anime_review.forEach(row => {%>
+                        <h3><a href="/anime/<%= row[1] %>"><%= row[8] %></a></h3>
+                        <p style="color:black"><%= row[5] %></p>
+                    <% }); %>
+                </div>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <h2>Manga Reviews</h2>
+            <div class="dropdown-content">
+                <div class="review">
+                    <% manga_review.forEach(row => {%>
+                        <h3><a href="/manga/<%= row[1] %>"><%= row[8] %></a></h3>
+                        <p style="color:black"><%= row[5] %></p>
+                    <% }); %>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

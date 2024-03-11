@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>myAnimeList</title>
+    <!-- <link rel="stylesheet" href="bg.css">
+    <link rel="stylesheet" href="box.css"> -->
+    <link rel = "stylesheet" href = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <%- include('./bg'); %>
+    <%- include('./box'); %>
+</head>
+<style>
+  .user_profile{
+    position: absolute;
+    top: 0;
+    right: 0;
+    text-align: justify;
+    padding: 10px;
+  }
+</style>
+<body style="color: white">
+    <div class="wrapper">
+      
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      
+  </div>
+  
+  <% if(locals.login_status == false) {%>
+  <div class="user_stuffs">
+    <br>
+    <a href="/login">LOGIN</a>  
+    <a href="/register">REGISTER</a>
+  </div>
+  <% } %>
+
+  <div class = "user_profile">
+    
+    <% if(locals.login_status == true) {%>
+      <img class = "user_propic" src = <%=locals.pro_pic %> > <br>
+      Hello, <p style = "color : red"><a href="/user/<%= locals.user_id %>"><%= locals.username %></a> !</p>
+      <button><a href="/logout">LOGOUT</a></button>
+      
+    <% } %>
+    <% if(locals.login_status == false) {%>
+      <div class="tenor-gif-embed" data-postid="25682853" data-share-method="host" data-aspect-ratio="1.77778" data-width="100%"><a href="https://tenor.com/view/anya-gif-25682853">Anya GIF</a>from <a href="https://tenor.com/search/anya-gifs">Anya GIFs</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script><!-- <div class="tenor-gif-embed" data-postid="27052786" data-share-method="host" data-aspect-ratio="1.78771" data-width="100%"><a href="https://tenor.com/view/intense-anya-anya-forger-anime-anya-forger-anya-smile-gif-27052786">Intense Anya GIF</a>from <a href="https://tenor.com/search/intense-gifs">Intense GIFs</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script> -->
+      Hello, <p style = "color : red ">Anya!</p>
+    <% } %>
+    
+  </div>
+  <div class="centered">
+    <br><br><a href = "/"><img class="logo" src="https://files.catbox.moe/rfez6j.png"></a><br><br><br>
+    
+
+      <%data.forEach(row =>{%>
+        <a href="/anime/<%=row[0]%>">
+            <div class="media-placeholder">
+
+                <div class="vertical-box">
+                  <img class="rounded-image" src="<%= row[3]%>" alt="No image available">
+                </div>
+                
+                <div class="title">
+                  <%= row[1]%>
+                  <% if(row[1] == null)  {%> <%= row[2] %> <%}%>
+                </div>
+                
+            </div>
+        </a>
+        <% }); %>
+          
+    </div>
+
+
+</body>
+</html>

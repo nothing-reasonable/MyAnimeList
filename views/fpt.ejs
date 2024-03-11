@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>myAnimeList</title>
+    <link rel = "stylesheet" href = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="bg.css">
+    <style>
+        table {
+            border-collapse: collapse;
+            border-radius: 10px;
+             width: 90%; 
+        }
+
+        th, td {
+            border: 8px solid #000000; 
+            border-radius: 20px;
+            text-align: center;
+            padding: 8px;
+            
+        }
+
+        th {
+            background-color: #3baaffbb;
+        }
+
+        td {
+            background-color: #353535;
+        }
+
+    </style>
+</head>
+<body style="color: white;">
+    <div class="wrapper">
+      
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        <div><span class="dot"></span></div>
+        
+    </div>
+    <center>
+        <br>
+        <a href= "/"><img height="150" src="https://files.catbox.moe/rfez6j.png" ></a><br><br>
+        <h1>FPT LOG TABLE</h1><br>
+        <form action="/fpt2" method="get">
+            <input type="hidden" id="page_index" name="page_index" value="<%=page_index%>">
+            <button type="submit">Search</button>
+            <button class="page" <% if(page_index == 1) { %> disabled <% } %> onclick="page_index.value = page_index.value-2">Previous</button>
+            <button class="page" <% if(log_table.length < 20) { %> disabled <% } %>>Next</button>
+        </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Log_ID</th>
+                <th>User_ID</th>
+                <th>Time</th>
+                <th>Operation Type</th>
+                <th>Operation Name</th>
+                <th>Query_Type</th>
+                <th>Status</th>
+                <th>Params</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for(let i=0; i<log_table.length; i++) { %>
+                <tr>
+                    <% for(let j=0; j<8; j++) { %>
+                    <td><%= log_table[i][j] %></td>
+                    <%}%>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+    <br><br><br><br><br>
+
+</center>
+</body>
+</html>

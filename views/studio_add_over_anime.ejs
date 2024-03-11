@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Search Studios</title>
+</head>
+<body>
+
+<h2>Search Studios</h2>
+
+<input type="text" id="searchInput" placeholder="Search...">
+
+<form action="/anime/<%=anime_id%>/add/studio" method="post">
+    <select id="contribution" name="contribution">
+        <option value="">Role</option>
+        <option value="PRODUCTION">Producing</option>
+        <option value="ANIMATION">Animating</option>
+        <option value="BOTH">Both</option>     
+    </select>
+    <div id="searchResults"></div>
+<br>
+<div id="resultItemContainer"></div>
+    <button type="submit" >Submit Studios</button>
+</button>
+
+
+<script>
+// Define studios array
+const studios = [];
+<% studios_m.forEach(studio => { %>
+    studios.push('<%= studio %>');
+<% }) %>
+
+document.getElementById('searchInput').addEventListener('input', function() {
+    const searchQuery = this.value.toLowerCase(); // Convert input to lowercase for case-insensitive search
+    const resultsContainer = document.getElementById('searchResults');
+    resultsContainer.innerHTML = ''; // Clear previous search results
+    
+    // Filter data based on search query
+    var filteredData = studios.filter(studio => {
+        return studio.split(',')[1].toLowerCase().includes(searchQuery);
+    });
+    
+    // Display filtered results
+    filteredData.forEach(item => {
+        const resultItem = document.createElement('button');
+        const resultItemContainer = document.getElementById('resultItemContainer');
+        resultItem.textContent = item.split(',')[1];
+        const element = document.createElement('input');
+        element.type = 'hidden';
+        element.name = 'studio_id[]';
+        console.log(item.split(',')[0]);
+        element.value = Number(item.split(',')[0]);
+        resultItem.onclick = function() {
+            resultItem.style.display = 'none';
+            resultsContainer.appendChild(element);
+        };
+        resultsContainer.appendChild(resultItem);
+    });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>myAnimeList</title>
+    <!-- <link rel="stylesheet" href="bg.css">
+    <link rel="stylesheet" href="box.css"> -->
+    <%- include('./bg'); %>
+    <%- include('./box_for_manga'); %>
+
+</head>
+<style>
+  .user_profile{
+    position: absolute;
+    top: 0;
+    right: 0;
+    text-align: justify;
+    padding: 10px;
+  }
+</style>
+<body style="color: white">
+    <div class="wrapper">
+      
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      
+  </div>
+  
+  <% if(locals.login_status == false) {%>
+    <div class="user_stuffs">
+      <br>
+      <button><a href="/login" style="color: white">LOGIN</a></button>  
+      <button><a href="/register" style="color: white">REGISTER</a></button>
+    </div>
+    <% } %>
+  
+    <div class = "user_profile">
+      
+      <% if(locals.login_status == true) {%>
+        <img class = "user_propic" src = <%=locals.pro_pic %> > <br>
+        Hello, <p style = "color : red"><a href="/user/<%= locals.user_id %>" style="color: white"><%= locals.username %></a> !</p>
+        <button><a href="/logout">LOGOUT</a></button>
+        
+      <% } %>
+
+      
+    </div>
+
+
+  <div class="centered">
+    <br><br><a href = "/"><img class="logo" src="https://files.catbox.moe/rfez6j.png"></a><br><br><br>
+    <form action="/anime/<%=anime_id%>/add/manga/search" method="get">
+      <input type = "hidden" name = "page_index" value = "<%=page_index%>"> 
+      <input type="text" id="search" name="title" placeholder="Search Manga">
+      <input type = "text" id = "search_genre" name = "genre" placeholder = "Search by Genre">
+      <select id = "status" name = "status">
+        <option value = "">Status</option>
+        <option value = "Finished">Finished</option>
+        <option value = "Releasing">Releasing</option>
+      </select>
+      <select id = "country_of_origin" name = "country">
+        <option value = "">Country</option>
+        <%country_of_origin.forEach(row => {%>
+          <option value = "<%= row[0]%>"><%= row[0]%></option>
+        <% }); %>
+      </select>
+      <select id = "year" name = "year">
+        <option value = "">Year</option>
+        <%year.forEach(row =>{%>
+          <option value = "<%= row[0]%>"><%= row[0]%></option>
+        <% }); %>
+      </select>
+      <input type = "text" id = "author" name = "author" placeholder = "Author">
+      <input type = "text" id = "character" name = "character" placeholder = "Character">
+      <button type="submit">Search</button>
+    </form>
+    <br><br><br><br>
+
+    <%data.forEach(row =>{%>
+      <a href="/anime/<%=anime_id%>/add/manga/<%=row[0]%>">
+          <div class="media-placeholder">
+
+              <div class="vertical-box">
+                <img class="rounded-image" src="<%= row[3]%>" alt="No image available">
+              </div>
+              
+              <div class="title">
+                <%= row[1]%>
+                <% if(row[1] == null)  {%> <%= row[2] %> <%}%>
+              </div>
+          </div>
+      </a>
+      <% }); %>
+
+    </div>
+
+
+</body>
+</html>

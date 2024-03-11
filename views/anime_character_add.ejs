@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Anime - Admin Panel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <form action="/anime/<%=anime_id%>/add/character" method="post">
+        <!-- <label for="anime_id">Anime ID:</label> -->
+        <input type="hidden" id="anime_id" name="anime_id" value=<%=anime_id%>>
+
+        <label for="first_name">First Name</label>
+        <input type="text" id="first_name" name="first_name" >
+
+        <label for="last_name">Last Name</label>
+        <input type="text" id="last_name" name="last_name">
+
+        <label for="role">Role Play</label>
+        <select id="role_play" name="role_play">
+            <option value="Supporting">Supporting</option>
+            <option value="Main">Main</option>
+        </select>
+        <label for="description">Description</label>
+        <input type="text" id="description" name="description">
+
+        <label for="cover_image">Image</label>
+        <input type="file" name="image_link" accept="image/*"><br>
+
+        <!-- <div id="input-container">
+        </div> -->
+        <!-- <button type="button" onclick="addInput()">Add Input</button>
+        <button type="button" onclick="removeInput()">Remove Input</button> -->
+
+        <button type="submit">Add Character</button>
+    </form>
+    <script>
+        function addInput() {
+            var inputContainer = document.getElementById('input-container');
+            var input = document.createElement('input');
+            input.type = 'text';
+            input.name = 'voice_actors[]'; // To handle it as an array in the backend
+            inputContainer.appendChild(input);
+        }
+
+        function removeInput() {
+            var inputContainer = document.getElementById('input-container');
+            if (inputContainer.children.length > 0) {
+                inputContainer.removeChild(inputContainer.lastChild);
+            }
+        }
+    </script>
+</body>
+</html>

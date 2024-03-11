@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>myAnimeList</title>
+    <link rel="stylesheet" href="http://localhost:3000/bg.css">
+    <link rel="stylesheet" href="http://localhost:3000/box.css">
+
+</head>
+<body style="color: white">
+    <div class="wrapper">
+      
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      
+  </div>
+  
+  <div class="user_stuffs">
+    <br>
+    <a href="/login">LOGIN</a>  
+    <a href="/register">REGISTER</a>
+  </div>
+
+
+  <div class="centered">
+    <br><br><a href = "/person"><img class="logo" src="http://localhost:3000/logo.png"></a><br><br><br>
+    <form action="/person/search" method="get">  
+      <input type = "hidden" id = "page" name = "page_index" value = "<%=page_index%>">     
+      <input type="text" id="search" name="name" placeholder="Search Voice Artist" value="<%=name%>">
+      <button type="submit">Search</button>
+      <button class="page" <% if(page_index == 1) { %> disabled <% } %> onclick="page_index.value = page_index.value-2">Previous</button>
+      <button class="page" <% if(data.length < 20) { %> disabled <% } %>>Next</button>
+    </form>
+    <br><br><br><br>
+
+      <%data.forEach(row =>{%>
+        <a href="/person/<%=row[0]%>">
+            <div class="media-placeholder">
+
+                <div class="vertical-box">
+                  <img class="rounded-image" src="<%= row[5]%>" alt="No image available">
+                </div>
+                
+                <div class="title">
+                  <%= row[1]%>
+                  <% if(row[1] == null)  {%> <%= row[2] %> <%}%>
+                </div>
+            </div>
+        </a>
+        <% }); %>
+          
+    </div>
+
+
+</body>
+</html>

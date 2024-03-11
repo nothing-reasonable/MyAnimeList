@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>myAnimeList</title>
+    <link rel="stylesheet" href="http://localhost:3000/bg.css">
+    <link rel="stylesheet" href="http://localhost:3000/box.css">
+
+</head>
+<body style="color: white">
+    <div class="wrapper">
+      
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      <div><span class="dot"></span></div>
+      
+  </div>
+  
+  <div class="user_stuffs">
+    <br>
+    <a href="/login">LOGIN</a>  
+    <a href="/register">REGISTER</a>
+  </div>
+
+
+  <div class="centered">
+    <br><br><a href = "/manga"><img class="logo" src="http://localhost:3000/logo.png"></a><br><br><br>
+    <form action="/anime/<%=anime_id%>/add/manga/" method="get">
+
+      <input type="hidden" id="page" name="page_index" value="<%=page_index%>">
+      <input type="text" id="search" name="title" placeholder="Search Manga" value="<%=title_s%>">
+      <input type = "text" id = "search_genre" name = "genre" placeholder = "Search by Genre" value="<%=genre_s%>">
+      <select id = "status" name = "status">
+        <option value = "<%=status_s%>">Status</option>
+        <option value = "Finished">Finished</option>
+        <option value = "Releasing">Releasing</option>
+      </select>
+      <select id = "country_of_origin" name = "country">
+        <option value = "<%=country_s%>">Country</option>
+        <%country_of_origin.forEach(row => {%>
+          <option value = "<%= row[0]%>"><%= row[0]%></option>
+        <% }); %>
+      </select>
+      <select id = "year" name = "year">
+        <option value = "<%=year_s%>">Year</option>
+        <%year.forEach(row =>{%>
+          <option value = "<%= row[0]%>"><%= row[0]%></option>
+        <% }); %>
+      </select>
+      <input type = "text" id = "author" name = "author" placeholder = "Author" value="<%=author_s%>">
+      <input type = "text" id = "character" name = "character" placeholder = "Character" value="<%=character_s%>">
+      <button type="submit" onclick="page_index.value=0">Search</button>
+        <button class="page" <% if(page_index == 1) { %> disabled <% } %> onclick="page_index.value = page_index.value-2">Previous</button>
+        <button class="page" <% if(data.length < 20) { %> disabled <% } %>>Next</button>
+    </form>
+    <br><br><br><br>
+
+      <%data.forEach(row =>{%>
+        <div class="media-placeholder">
+
+            <div class="vertical-box">
+              <a href = "/anime/<%=anime_id%>/add/manga/<%=row[0]%>"><img class="rounded-image" src="<%= row[3]%>" alt="No image available"></a>
+            </div>
+            
+            <div class="title">
+              <%= row[1]%>
+              <% if(row[1] == null)  {%> <%= row[2] %> <%}%>
+            </div>
+         </div>
+
+        <% }); %>
+
+    </div>
+
+
+</body>
+</html>

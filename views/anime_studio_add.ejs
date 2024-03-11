@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Anime - Admin Panel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <form action="/xyz" method="post">
+        <!-- <label for="anime_id">Anime ID:</label> -->
+        <div id="input-container">
+        </div>
+        <button type="button" onclick="addInput()">Add Input</button>
+        <button type="button" onclick="removeInput()">Remove Input</button>
+
+        <button type="submit">Add Character</button>
+        <label for="preferred_option">Preferred Option:</label>
+<select id="preferred_option" name="preferred_option" onchange="toggleTextInput(this)">
+    <option value="option1">Option 1</option>
+    <option value="option2">Option 2</option>
+    <option value="option3">Option 3</option>
+    <option value="other">Other</option>
+</select>
+<input type="text" id="other_option" name="other_option" style="display: none;" placeholder="Enter your preferred option">
+
+<script>
+    function toggleTextInput(selectElement) {
+        const otherOptionInput = document.getElementById('other_option');
+        if (selectElement.value === 'other') {
+            otherOptionInput.style.display = 'block';
+        } else {
+            otherOptionInput.style.display = 'none';
+        }
+    }
+</script>
+
+    </form>
+    <script>
+        function addInput() {
+            var inputContainer = document.getElementById('input-container');
+
+            var character_index = document.createElement('text')
+            character_index.innerHTML = "Character " + (inputContainer.children.length/6 + 1) + ": ";
+            var first_name = document.createElement('input');
+            var last_name = document.createElement('input');
+            var select = document.createElement('select');
+            select.name = 'role_play'; // Name attribute to handle it as an array in the backend
+
+            // Create option elements
+            var option1 = document.createElement('option');
+            option1.value = 'Supporting';
+            option1.text = 'Supporting';
+
+            var option2 = document.createElement('option');
+            option2.value = 'Main';
+            option2.text = 'Main';
+
+            // Append options to select element
+            select.appendChild(option1);
+            select.appendChild(option2);
+            var description = document.createElement('input');
+            var image_link = document.createElement('input');
+            first_name.type = 'text';
+            first_name.name = 'first_name[]';
+            first_name.placeholder = 'First Name';
+            last_name.type = 'text';
+            last_name.name = 'last_name[]';   
+            last_name.placeholder = 'Last Name';         
+            description.type = 'text';
+            description.name = 'description[]';
+            description.placeholder = 'Description';
+            image_link.type = 'file';
+            image_link.accept = 'image/*';
+            image_link.name = 'image_link[]';
+            inputContainer.appendChild(character_index);
+            inputContainer.appendChild(first_name);
+            inputContainer.appendChild(last_name);
+            inputContainer.appendChild(select);
+            inputContainer.appendChild(description);
+            inputContainer.appendChild(image_link);
+        }
+
+        function removeInput() {
+            var inputContainer = document.getElementById('input-container');
+            if (inputContainer.children.length > 0) {
+                inputContainer.removeChild(inputContainer.lastChild);
+                inputContainer.removeChild(inputContainer.lastChild);
+                inputContainer.removeChild(inputContainer.lastChild);
+                inputContainer.removeChild(inputContainer.lastChild);
+                inputContainer.removeChild(inputContainer.lastChild);
+                inputContainer.removeChild(inputContainer.lastChild);
+            }
+        }
+    </script>
+</body>
+</html>
